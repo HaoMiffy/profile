@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Solutions - 您的願景，我們的解決方案</title>
+    <style>
+        /* CSS Reset and Basic Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: #ffffff;
+            color: #333;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        nav a {
+            color: #555;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 25px;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #007bff;
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1549692520-acc6663f4586?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNzEzNTJ8MHwxfHNlYXJjaHw1fHxlbmdpbmVlcmluZ3xlbnwwfHx8fDE3MjE4MzcyNzh8MA&ixlib=rb-4.0.3&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding-top: 60px; /* To account for fixed header */
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #1a1a1a;
+        }
+
+        .section-separator {
+            width: 80px;
+            height: 4px;
+            background-color: #007bff;
+            margin: -40px auto 80px;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: #e9ecef;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        /* RWD - Responsive Design */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            nav {
+                display: none; /* Hide navigation on mobile */
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .section-separator {
+                margin: -20px auto 60px;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-image {
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Infinity Solutions</a>
+            <nav>
+                <a href="#about">關於我們</a>
+                <a href="#services">服務項目</a>
+                <a href="#contact">聯絡我們</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <h1>您的願景，我們的解決方案</h1>
+            <p>透過創新的軟體與數據技術，我們將您的想法轉化為現實，助您開創無限可能。</p>
+            <a href="#services" class="cta-button">了解更多</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>關於我們</h2>
+            <div class="section-separator"></div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Infinity Solutions 是一家專注於技術創新的公司。我們由一群充滿熱情與專業知識的工程師和數據科學家組成，致力於為客戶提供量身訂做的數位解決方案。從精密的軟體開發到深入的數據洞察，我們幫助企業提升效率、優化決策，並在競爭激烈的市場中脫穎而出。</p>
+                    <p style="margin-top: 15px;">我們相信，每個問題都蘊含著一個機會。我們的使命，就是發掘這些機會，並以無限的創造力為您打造專屬的解決方案。</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b2baf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNzEzNTJ8MHwxfHNlYXJjaHw3fHxiaXN1bmVzc3xlbnwwfHx8fDE3MjE4Mzc2MTB8MA&ixlib=rb-4.0.3&q=80&w=600" alt="公司團隊正在討論">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2>服務項目</h2>
+            <div class="section-separator"></div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>客製化軟體開發</h3>
+                    <p>根據您的需求，從頭設計與建構高效、可擴展的應用程式，涵蓋網頁、行動端與企業級系統。</p>
+                </div>
+                <div class="service-card">
+                    <h3>數據分析與人工智慧</h3>
+                    <p>透過數據建模與機器學習，從龐大資料中提煉關鍵洞察，協助您做出更明智的商業決策。</p>
+                </div>
+                <div class="service-card">
+                    <h3>雲端解決方案</h3>
+                    <p>提供專業的雲端架構設計與部署服務，確保您的系統具備高可用性、安全與彈性。</p>
+                </div>
+                <div class="service-card">
+                    <h3>使用者體驗設計 (UX/UI)</h3>
+                    <p>專注於打造直觀且易於使用的介面，提升產品的互動性與使用者滿意度。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>聯絡我們</h2>
+            <div class="section-separator"></div>
+            <div class="contact-info">
+                <p>Email: contact@infinitysolutions.com</p>
+                <p>電話: +886-2-1234-5678</p>
+                <p>地址: 台北市大安區信義路二段 123 號 10 樓</p>
+                <a href="mailto:contact@infinitysolutions.com" class="cta-button">立即聯繫</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Infinity Solutions. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
