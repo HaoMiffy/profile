@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Synthetix Industries</title>
+<style>
+/* ------------------ RESET ------------------ */
+* { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
+body { min-height: 100vh; background: linear-gradient(to bottom, #f8fafc, #ffffff, #f1f5f9); color: #1e293b; line-height: 1.6; }
+
+/* ------------------ HEADER ------------------ */
+header {
+    position: fixed;
+    top:0; left:0; width:100%;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid #e2e8f0;
+    z-index: 30;
+}
+header .container { max-width: 1200px; margin: 0 auto; padding: 1rem 1.5rem; display:flex; justify-content:space-between; align-items:center; }
+header .logo { display:flex; align-items:center; gap:0.75rem; }
+header .logo .icon { width:40px; height:40px; background: linear-gradient(to bottom right, #4f46e5, #06b6d4); color:white; font-weight:bold; display:flex; justify-content:center; align-items:center; border-radius:0.5rem; box-shadow:0 2px 8px rgba(0,0,0,0.15);}
+header nav { display:flex; gap:1.5rem; font-weight:500; }
+header nav a { text-decoration:none; color:#374151; transition: color 0.2s; }
+header nav a:hover { color:#4f46e5; }
+
+/* ------------------ MAIN ------------------ */
+main { padding-top: 112px; } /* header 高度 + margin */
+
+/* HERO */
+.hero { max-width: 1200px; margin:0 auto; padding:5rem 1.5rem; display:grid; grid-template-columns:1fr; gap:2.5rem; }
+.hero .text h1 { font-size:2.5rem; font-weight:800; }
+.hero .text p { color:#475569; margin-top:1rem; max-width:500px; }
+.hero .buttons { margin-top:1.5rem; display:flex; gap:1rem; }
+.hero .buttons a { padding:0.75rem 1.5rem; border-radius:9999px; font-weight:500; text-decoration:none; display:inline-block; transition: transform 0.2s; }
+.hero .buttons a.primary { background:#4f46e5; color:white; box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+.hero .buttons a.primary:hover { transform:scale(1.02); }
+.hero .buttons a.secondary { background:white; color:#1e293b; border:1px solid #e5e7eb; box-shadow:0 1px 4px rgba(0,0,0,0.1);}
+.hero .buttons a.secondary:hover { transform:scale(1.02); }
+.hero .tags { margin-top:1.5rem; display:flex; gap:0.5rem; flex-wrap:wrap; color:#64748b; }
+.hero .tags div { padding:0.25rem 0.75rem; border:1px solid #e5e7eb; border-radius:9999px; background:white; }
+
+/* HERO IMAGE */
+.hero .image { position:relative; }
+.hero .image .bg-blur {
+    position:absolute;
+    width:18rem; height:18rem;
+    background: linear-gradient(135deg, #06b6d4, #c7d2fe, #a78bfa);
+    filter: blur(80px);
+    top:-2.5rem; right:-5rem;
+    transform:rotate(12deg);
+    opacity:0.5;
+    border-radius:1rem;
+}
+.hero .image .card {
+    position:relative;
+    border-radius:1rem;
+    overflow:hidden;
+    background: linear-gradient(to bottom right, #ffffff, #f8fafc);
+    border:1px solid #f1f5f9;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+.hero .image .card img { width:100%; height:20rem; object-fit:cover; }
+.hero .image .card .info { padding:1.5rem; }
+.hero .image .card .info .title { font-weight:600; margin-top:0.5rem; }
+.hero .image .card .info p { font-size:0.875rem; color:#475569; margin-top:0.25rem; }
+
+/* ------------------ SECTIONS ------------------ */
+section { max-width:1200px; margin:0 auto; padding:4rem 1.5rem; }
+section h2 { font-size:1.875rem; font-weight:700; }
+section p { color:#475569; margin-top:0.75rem; }
+.grid { display:grid; gap:1.5rem; }
+.grid-2 { grid-template-columns:1fr 1fr; }
+.grid-3 { grid-template-columns:repeat(3,1fr); }
+.grid-4 { grid-template-columns:repeat(4,1fr); }
+
+/* ABOUT STATS */
+.stats { margin-top:1.5rem; display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; max-width:400px; }
+.stat { padding:1rem; background:white; border-radius:1rem; border:1px solid #e5e7eb; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+.stat .number { font-size:1.5rem; font-weight:700; }
+.stat .label { font-size:0.875rem; color:#64748b; }
+
+/* TEAM */
+.team-member { padding:1.25rem; text-align:center; background:white; border-radius:1rem; border:1px solid #e5e7eb; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+.team-member img { width:5rem; height:5rem; border-radius:50%; object-fit:cover; margin:0 auto; }
+.team-member .name { font-weight:600; margin-top:0.5rem; }
+.team-member .role { font-size:0.875rem; color:#64748b; }
+
+/* CONTACT FORM */
+.contact input, .contact textarea { width:100%; padding:0.75rem; border-radius:0.5rem; border:1px solid #e5e7eb; margin-top:0.5rem; }
+.contact button { padding:0.75rem 1.5rem; border-radius:9999px; background:#4f46e5; color:white; border:none; cursor:pointer; }
+
+/* FOOTER */
+footer { background:white; border-top:1px solid #f1f5f9; padding:2rem 1.5rem; text-align:center; font-size:0.875rem; color:#64748b; display:flex; flex-direction:column; gap:0.5rem; }
+footer .links { display:flex; gap:1rem; justify-content:center; }
+footer .links a { text-decoration:none; color:inherit; transition: color 0.2s; }
+footer .links a:hover { color:#4f46e5; }
+
+@media(min-width:768px) {
+    .hero { grid-template-columns:1fr 1fr; }
+    .grid-2 { grid-template-columns:repeat(2,1fr); }
+    .grid-3 { grid-template-columns:repeat(3,1fr); }
+    .grid-4 { grid-template-columns:repeat(4,1fr); }
+    header nav { display:flex; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo">
+      <div class="icon">SI</div>
+      <div>
+        <div>Synthetix Industries</div>
+        <div style="font-size:0.75rem; color:#64748b;">Smart products · human impact</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="text">
+      <h1>Synthetix Industries</h1>
+      <p>我們以合成智慧、資料與設計融合，打造對人更友好的工業產品與企業服務。從原型到量產，我們縮短時間與成本，讓客戶專注於商業價值。</p>
+      <div class="buttons">
+        <a href="#contact" class="primary">聯絡我們</a>
+        <a href="#work" class="secondary">查看作品</a>
+      </div>
+      <div class="tags">
+        <div>設計驅動 · 數據導向</div>
+        <div>快速原型</div>
+        <div>企業整合</div>
+      </div>
+    </div>
+    <div class="image">
+      <div class="bg-blur"></div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1526378722699-33f95b1a0b4d?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="office" />
+        <div class="info">
+          <div style="font-size:0.75rem; color:#64748b;">最新成果</div>
+          <div class="title">SYN-X 小型智慧感測器 · 工業版</div>
+          <p>低功耗、模組化設計，能快速整合現有工廠與雲端分析平台。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="grid grid-2">
+    <div>
+      <h2>關於我們</h2>
+      <p>Synthetix Industries 成立於 2018 年，專注於把硬體、韌體與雲端資料分析結合，為中大型製造業提供智慧化升級方案。我們的團隊橫跨工業設計、嵌入式開發、資料工程與 UX 設計，致力於以最短的時間驗證商業假設並交付可量產的產品。</p>
+      <div class="stats">
+        <div class="stat"><div class="number">120+</div><div class="label">客戶案</div></div>
+        <div class="stat"><div class="number">8</div><div class="label">國際夥伴</div></div>
+        <div class="stat"><div class="number">15</div><div class="label">專利</div></div>
+        <div class="stat"><div class="number">4</div><div class="label">年平均成長</div></div>
+      </div>
+    </div>
+    <div>
+      <div style="padding:1.5rem; background:linear-gradient(to bottom right,#4f46e5,#06b6d4); color:white; border-radius:1rem;">
+        <h3>我們的使命</h3>
+        <p>簡化複雜世界，創造可量產且有價值的智慧產品。</p>
+        <ul>
+          <li>以人為本的工業設計</li>
+          <li>模組化與可維護性</li>
+          <li>資料驅動決策</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <h2>我們的服務</h2>
+    <p>從概念驗證到量產，我們提供一條龍服務：</p>
+    <div class="grid grid-3">
+      <div style="padding:1.5rem; background:white; border-radius:1rem; border:1px solid #e5e7eb; box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+        <div style="color:#4f46e5; font-weight:600;">產品設計 & 原型</div>
+        <p>快速將想法變成可測試的原型，包含工業設計與韌體原型。</p>
+      </div>
+      <div style="padding:1.5rem; background:white; border-radius:1rem; border:1px solid #e5e7eb; box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+        <div style="color:#4f46e5; font-weight:600;">嵌入式開發</div>
+        <p>低功耗韌體、模組化硬體，支援 OTA 更新與可靠性測試。</p>
+      </div>
+      <div style="padding:1.5rem; background:white; border-radius:1rem; border:1px solid #e5e7eb; box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+        <div style="color:#4f46e5; font-weight:600;">後端 & 資料分析</div>
+        <p>從邊緣資料收集到雲端串接，建立可視化與預測模型。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <h2>案例作品</h2>
+    <p>部分代表性計畫與合作產品。</p>
+    <div class="grid grid-3">
+      <div style="border-radius:1rem; overflow:hidden; background:white; border:1px solid #e5e7eb; box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="case-1" style="width:100%; height:12rem; object-fit:cover;" />
+        <div style="padding:1rem;">
+          <h3>專案 1 · 工廠智慧化</h3>
+          <p>協助客戶構建設備監控系統，降低停機時間與維護成本。</p>
+        </div>
+      </div>
+      <div style="border-radius:1rem; overflow:hidden; background:white; border:1px solid #e5e7eb; box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="case-2" style="width:100%; height:12rem; object-fit:cover;" />
+        <div style="padding:1rem;">
+          <h3>專案 2 · 工廠智慧化</h3>
+          <p>協助客戶構建設備監控系統，降低停機時間與維護成本。</p>
+        </div>
+      </div>
+      <div style="border-radius:1rem; overflow:hidden; background:white; border:1px solid #e5e7eb; box-shadow:0 1px 4px rgba(0,0,0,0.05);">
+        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="case-3" style="width:100%; height:12rem; object-fit:cover;" />
+        <div style="padding:1rem;">
+          <h3>專案 3 · 工廠智慧化</h3>
+          <p>協助客戶構建設備監控系統，降低停機時間與維護成本。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <h2>核心團隊</h2>
+    <p>跨領域的核心成員，從設計到後端都能落地執行。</p>
+    <div class="grid grid-4" style="margin-top:2rem;">
+      <div class="team-member"><img src="https://i.pravatar.cc/150?img=32" alt="林以諾"><div class="name">林以諾</div><div class="role">創辦人 & 執行長</div></div>
+      <div class="team-member"><img src="https://i.pravatar.cc/150?img=12" alt="陳韻如"><div class="name">陳韻如</div><div class="role">產品設計師</div></div>
+      <div class="team-member"><img src="https://i.pravatar.cc/150?img=48" alt="王博文"><div class="name">王博文</div><div class="role">嵌入式工程師</div></div>
+      <div class="team-member"><img src="https://i.pravatar.cc/150?img=68" alt="Susan Lee"><div class="name">Susan Lee</div><div class="role">資料科學家</div></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="grid grid-2">
+    <div class="contact">
+      <h2>聯絡我們</h2>
+      <p>有專案、合作或媒體採訪需求，歡迎填寫以下表單或直接寄信至 <strong>hello@synthetix.example</strong></p>
+      <input placeholder="你的名字" />
+      <input placeholder="Email" />
+      <textarea rows="5" placeholder="簡短說明你的需求"></textarea>
+      <button>送出</button>
+    </div>
+    <div>
+      <div style="padding:1.5rem; background:linear-gradient(to bottom right,#4f46e5,#06b6d4); color:white; border-radius:1rem;">
+        <h3>公司資訊</h3>
+        <ul style="margin-top:1rem; font-size:0.875rem; line-height:1.5;">
+          <li>地址：台北市信義區示範路 88 號</li>
+          <li>電話：+886 2 1234 5678</li>
+          <li>Email：hello@synthetix.example</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div>© <span id="year"></span> Synthetix Industries — All rights reserved.</div>
+  <div class="links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+  </div>
+</footer>
+
+<script>
+// FOOTER YEAR
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// CONTACT FORM SUBMIT
+const contactSection = document.querySelector('.contact');
+if(contactSection){
+  const btn = contactSection.querySelector('button');
+  btn.addEventListener('click', () => {
+    const inputs = contactSection.querySelectorAll('input, textarea');
+    const data = {};
+    inputs.forEach(input => { data[input.placeholder] = input.value; });
+    console.log('表單提交：', data);
+    alert('表單已提交 (檢查 console)');
+  });
+}
+</script>
+
+</body>
+</html>
